@@ -9,33 +9,51 @@ import UIKit
 import RxSwift
 import UserNotifications
 
-class AddViewController: BaseVC {
+struct AddInitData {
+    let editMode: Bool
+    let data: SaveData?
+}
+
+class AddViewController: BaseVC<AddInitData> {
     
     private let disposeBag = DisposeBag()
-    var editMode: Bool = false
-    var data: SaveData?
+    let viewModel: AddVM
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var addButton: UIButton!
     
+    required init<T>(initDataProvider: T) where AddInitData == T.CustomInitData, T : BaseVCInitDataProviderType {
+        self.viewModel = AddVM(initData: initDataProvider.customInitData)
+        super.init(initDataProvider: initDataProvider)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if editMode {
-            if let data = data {
+        if viewModel.editMode {
+            if let data = viewModel.editData.value {
                 let formatter = DateFormatter()
                 formatter.dateFormat = Constants.DateFormat
                 if let date = formatter.date(from: data.dateStr) {
-                    datePicker.date = date
+                    self.datePicker.date = date
                 }
-                textField.text = data.desc
+                self.textField.text = data.desc
             }
             addButton.setTitle("Update", for: .normal)
         } else {
             addButton.setTitle("Add", for: .normal)
         }
-        requestNotificationAuthorization()
+        self.requestNotificationAuthorization()
+        
+        bind()
+    }
+    
+    func bind() {
     }
     
     func closeVC() {
@@ -49,9 +67,9 @@ class AddViewController: BaseVC {
     
     @IBAction func onAdd(_ sender: Any) {
         print("add")
-        if editMode {
-            if let data = data, let text = textField.text, !text.isEmpty {
-                sendNotification(date: datePicker.date, title: "alarm", desc: text, cbComplete: {
+        if viewModel.editMode {
+            if let data = viewModel.editData.value, let text = textField.text, !text.isEmpty {
+                self.sendNotification(date: datePicker.date, title: "alarm", desc: text, cbComplete: {
                     if SaveDataManager.shared.delete(id: data.id) {
                         self.closeVC()
                     }
@@ -61,74 +79,10 @@ class AddViewController: BaseVC {
             }
         } else {
             if let text = textField.text, !text.isEmpty {
-                sendNotification(date: datePicker.date, title: "alarm", desc: text)
+                self.sendNotification(date: datePicker.date, title: "alarm", desc: text)
             } else {
                 PopupVC.showAlert(vc: self, title: "알림", message: "상세 정보를 입력하세요")
             }
         }
-    }
-}
-
-extension AddViewController {
-    private func requestNotificationAuthorization() {
-        let options = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
-        UNUserNotificationCenter.current().requestAuthorization(options: options) { success, error in
-            if let error = error {
-                print("reuqest error! \(error.localizedDescription)")
-                return
-            }
-            
-            // 알림이 허용되지 않았을 경우
-            if success == false {
-                if let url = URL(string: UIApplication.openSettingsURLString) {
-                    // 앱 설정으로 이동
-                    UIApplication.shared.open(url)
-                }
-            }
-        }
-    }
-    
-    private func sendNotification(date: Date, title: String, desc: String, cbComplete: (() -> Void)? = nil) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy년 MMM dd일 a hh시 mm분"
-        let message = "\(formatter.string(from: date))에 알려드릴게요"
-        let request = getSendNotificationRequest(date: date, title: title, desc: desc)
-        UNUserNotificationCenter.current().add(request) { error in
-            if let error = error {
-                print("send error! \(error.localizedDescription)")
-                return
-            }
-            
-            if self.editMode {
-                if let data = self.data {
-                    PopupVC.showAlert(vc: self, title: "알림", message: "\(data.desc)를 \(desc)로 변경했습니다.\n\(message)") {
-                        cbComplete?()
-                    }
-                }
-            } else {
-                PopupVC.showAlert(vc: self, title: "알림", message: "'\(desc)'를 스케줄에 추가했습니다.\n\(message)")
-            }
-            SaveDataManager.shared.save(id: request.identifier, date: date, desc: desc)
-        }
-    }
-    
-    private func getSendNotificationRequest(date: Date, title: String, desc: String) -> UNNotificationRequest {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = desc
-        
-        var identifier = "id_\(NSDate().timeIntervalSince1970)"
-        
-        if editMode {
-            if let data = data {
-                identifier = data.id
-                // 이전 알림 삭제
-                UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [data.id])
-            }
-        }
-        let dateComp = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: date)
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: false)
-        
-        return UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
     }
 }

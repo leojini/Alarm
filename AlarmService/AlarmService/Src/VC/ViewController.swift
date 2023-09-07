@@ -43,15 +43,17 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onAdd(_ sender: Any) {
-        let vc = AddViewController(nibName: "AddViewController", bundle: nil)
+        let customInitData = AddInitData(editMode: false, data: nil)
+        let dataProvider = BaseVCInitDataProvider(customInitData: customInitData)
+        let vc = AddViewController(initDataProvider: dataProvider)
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true)
     }
     
     @IBAction func onEdit(_ sender: Any) {
-        let vc = AddViewController(nibName: "AddViewController", bundle: nil)
-        vc.editMode = true
-        vc.data = SaveDataManager.shared.getSelectedData()
+        let customInitData = AddInitData(editMode: true, data: SaveDataManager.shared.getSelectedData())
+        let dataProvider = BaseVCInitDataProvider(customInitData: customInitData)
+        let vc = AddViewController(initDataProvider: dataProvider)
         vc.modalPresentationStyle = .overFullScreen
         self.present(vc, animated: true)
     }

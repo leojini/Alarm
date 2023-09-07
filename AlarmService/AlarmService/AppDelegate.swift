@@ -8,6 +8,8 @@
 import UIKit
 import IQKeyboardManagerSwift
 import UserNotifications
+import FirebaseCore
+import FirebaseMessaging
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,12 +18,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        UNUserNotificationCenter.current().delegate = self
+        FirebaseApp.configure()
+        Messaging.messaging().delegate = self
         
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         IQKeyboardManager.shared.shouldShowToolbarPlaceholder = false
         IQKeyboardManager.shared.enableAutoToolbar = false
+        
+        UNUserNotificationCenter.current().delegate = self
+                
+        let options = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
+        UNUserNotificationCenter.current().requestAuthorization(options: options) { success, error in
+            if let error = error {
+                print("reuqest error! \(error.localizedDescription)")
+                return
+            }
+            
+            // 알림이 허용되지 않았을 경우
+            if success == false {
+                if let url = URL(string: UIApplication.openSettingsURLString) {
+                    // 앱 설정으로 이동
+                    UIApplication.shared.open(url)
+                }
+            }
+        }
+
+        application.registerForRemoteNotifications()
         
         return true
     }
@@ -39,6 +62,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+    }
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
@@ -54,5 +81,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("id bbb : \(notification.request.identifier)")
         completionHandler([.alert, .badge, .sound])
+    }
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("fcm token: \(fcmToken)")
     }
 }
