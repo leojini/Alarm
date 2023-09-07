@@ -11,6 +11,7 @@ class AlarmItemCell: UITableViewCell {
     
     private let option: UIImageView = {
         let iv = UIImageView(image: UIImage(named: "unSelect"))
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
     
@@ -41,7 +42,6 @@ class AlarmItemCell: UITableViewCell {
     }
     
     private func setupView() {
-        
         let sv = UIStackView(arrangedSubviews: [option, desc, timeDesc])
         sv.axis = .horizontal
         sv.spacing = 10.0
@@ -56,7 +56,7 @@ class AlarmItemCell: UITableViewCell {
         }
         option.snp.makeConstraints { make in
             make.width.height.equalTo(30)
-            make.centerY.equalToSuperview()
+            make.top.equalToSuperview()
         }
     }
     
