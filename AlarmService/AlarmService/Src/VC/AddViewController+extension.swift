@@ -26,7 +26,7 @@ extension AddViewController {
         }
     }
     
-    func sendNotification(date: Date, title: String, desc: String, cbComplete: (() -> Void)? = nil) {
+    func addNotification(date: Date, title: String, desc: String, cbComplete: (() -> Void)? = nil) {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy년 MMM dd일 a hh시 mm분"
         let message = "\(formatter.string(from: date))에 알려드릴게요"
@@ -46,7 +46,7 @@ extension AddViewController {
             } else {
                 PopupVC.showAlert(vc: self, title: "알림", message: "'\(desc)'를 스케줄에 추가했습니다.\n\(message)")
             }
-            SaveDataManager.shared.save(id: request.identifier, date: date, desc: desc)
+            SaveDataManager.shared.save(id: request.identifier, date: date, desc: desc, option: self.viewModel.editMode)
         }
     }
     

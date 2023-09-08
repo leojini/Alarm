@@ -16,6 +16,21 @@ struct SaveData: Codable {
     let desc: String
     let dateStr: String
     var option: Bool = false
+    
+    var date: Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = Constants.DateFormat
+        if let date = formatter.date(from: dateStr) {
+            return date
+        }
+        return nil
+    }
+    var expired: Bool {
+        if date?.compare(Date()) == .orderedAscending {
+            return true
+        }
+        return false
+    }
 }
 
 class SaveDataManager {
@@ -23,20 +38,34 @@ class SaveDataManager {
     
     private init() {}
     
-    func save(id: String, date: Date, desc: String) {
+    func start() {
+        
+    }
+    
+    func save(id: String, date: Date, desc: String, option: Bool = false) {
         let formatter = DateFormatter()
         formatter.dateFormat = Constants.DateFormat
         let dateStr = formatter.string(from: date)
         
-        print("id: \(id)")
-        
-        let data = SaveData(id: id, desc: desc, dateStr: dateStr)
+        let data = SaveData(id: id, desc: desc, dateStr: dateStr, option: option)
         if var saveArray = UserDefaultsManager.saveDatas {
             saveArray.append(data)
             UserDefaultsManager.saveDatas = saveArray
         } else {
             var saveArray: [SaveData] = []
             saveArray.append(data)
+            UserDefaultsManager.saveDatas = saveArray
+        }
+    }
+    
+    func deleteExpired() {
+        // 시간이 지난 데이터를 삭제한다.
+        if var saveArray = UserDefaultsManager.saveDatas {
+            for (index, item) in saveArray.enumerated().reversed() {
+                if item.expired {
+                    saveArray.remove(at: index)
+                }
+            }
             UserDefaultsManager.saveDatas = saveArray
         }
     }

@@ -17,7 +17,6 @@
 		CA02FC0B2AA4B99000CE1BC4 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = CA02FC0A2AA4B99000CE1BC4 /* FirebaseRemoteConfig */; };
 		CA02FC0D2AA4B99000CE1BC4 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CA02FC0C2AA4B99000CE1BC4 /* FirebaseRemoteConfigSwift */; };
 		CA02FC0F2AA4B9AD00CE1BC4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = CA02FC0E2AA4B9AD00CE1BC4 /* FirebaseAnalytics */; };
-		CA09D8472AA1CF9D00C18F24 /* AddVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09D8462AA1CF9D00C18F24 /* AddVM.swift */; };
 		CA09D8492AA1D36800C18F24 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09D8482AA1D36800C18F24 /* NibLoadable.swift */; };
 		CA09D84B2AA1EA9800C18F24 /* AddViewController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA09D84A2AA1EA9800C18F24 /* AddViewController+extension.swift */; };
 		CA5691C82AA969FF004A6527 /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA5691C72AA969FF004A6527 /* alert.wav */; };
@@ -25,6 +24,9 @@
 		CA5701652A97895E00E3F4B5 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5701642A97895E00E3F4B5 /* UIApplication+Extension.swift */; };
 		CA94599D2A98881F00D4BC19 /* SaveDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94599C2A98881F00D4BC19 /* SaveDataManager.swift */; };
 		CA94599F2A98946900D4BC19 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94599E2A98946900D4BC19 /* UserDefaultManager.swift */; };
+		CAAD2AA42AAAFD0200510A66 /* AddVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD2AA32AAAFD0200510A66 /* AddVM.swift */; };
+		CAAD2AA62AAB496100510A66 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD2AA52AAB496000510A66 /* UIButton+Extension.swift */; };
+		CAAD2AA82AAB4E7200510A66 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD2AA72AAB4E7200510A66 /* UITextField+Extension.swift */; };
 		F41B36522A932CC800D151E8 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = F41B36512A932CC800D151E8 /* RxBlocking */; };
 		F41B36542A932CC800D151E8 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = F41B36532A932CC800D151E8 /* RxCocoa */; };
 		F41B36562A932CC800D151E8 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = F41B36552A932CC800D151E8 /* RxRelay */; };
@@ -41,7 +43,6 @@
 		F462DE4D2A8F9DDB00411B26 /* AlarmServiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE4C2A8F9DDB00411B26 /* AlarmServiceUITests.swift */; };
 		F462DE4F2A8F9DDB00411B26 /* AlarmServiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE4E2A8F9DDB00411B26 /* AlarmServiceUITestsLaunchTests.swift */; };
 		F462DE5C2A8F9FF100411B26 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE5B2A8F9FF100411B26 /* AddViewController.swift */; };
-		F462DE602A8FA2B300411B26 /* AddViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F462DE5F2A8FA2B300411B26 /* AddViewController.xib */; };
 		F462DE632A8FA57A00411B26 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE622A8FA57A00411B26 /* BaseVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,7 +80,6 @@
 		CA028CCF2A9D7BD400A0D880 /* AlarmItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmItemCell.swift; sourceTree = "<group>"; };
 		CA028CD32A9DE43600A0D880 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CA02FBFF2AA4B8BA00CE1BC4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		CA09D8462AA1CF9D00C18F24 /* AddVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddVM.swift; path = AlarmService/Src/VM/AddVM.swift; sourceTree = SOURCE_ROOT; };
 		CA09D8482AA1D36800C18F24 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		CA09D84A2AA1EA9800C18F24 /* AddViewController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddViewController+extension.swift"; sourceTree = "<group>"; };
 		CA5691C42AA95A80004A6527 /* AlarmService.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlarmService.entitlements; sourceTree = "<group>"; };
@@ -88,6 +88,9 @@
 		CA5701642A97895E00E3F4B5 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		CA94599C2A98881F00D4BC19 /* SaveDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataManager.swift; sourceTree = "<group>"; };
 		CA94599E2A98946900D4BC19 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		CAAD2AA32AAAFD0200510A66 /* AddVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVM.swift; sourceTree = "<group>"; };
+		CAAD2AA52AAB496000510A66 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		CAAD2AA72AAB4E7200510A66 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		F462DE282A8F9DDA00411B26 /* AlarmService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F462DE2B2A8F9DDA00411B26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F462DE2D2A8F9DDA00411B26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,7 +105,6 @@
 		F462DE4C2A8F9DDB00411B26 /* AlarmServiceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmServiceUITests.swift; sourceTree = "<group>"; };
 		F462DE4E2A8F9DDB00411B26 /* AlarmServiceUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmServiceUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F462DE5B2A8F9FF100411B26 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
-		F462DE5F2A8FA2B300411B26 /* AddViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddViewController.xib; sourceTree = "<group>"; };
 		F462DE622A8FA57A00411B26 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,15 +164,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		CA09D8432AA1CF2500C18F24 /* VM */ = {
-			isa = PBXGroup;
-			children = (
-				CA09D8462AA1CF9D00C18F24 /* AddVM.swift */,
-			);
-			name = VM;
-			path = "프";
-			sourceTree = "<group>";
-		};
 		CA5691C52AA969C9004A6527 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				CA5701642A97895E00E3F4B5 /* UIApplication+Extension.swift */,
+				CAAD2AA52AAB496000510A66 /* UIButton+Extension.swift */,
+				CAAD2AA72AAB4E7200510A66 /* UITextField+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -202,6 +197,14 @@
 				CA94599E2A98946900D4BC19 /* UserDefaultManager.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		CAAD2AA22AAAFCDD00510A66 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				CAAD2AA32AAAFD0200510A66 /* AddVM.swift */,
+			);
+			path = VM;
 			sourceTree = "<group>";
 		};
 		F41B36132A93278B00D151E8 /* Frameworks */ = {
@@ -273,7 +276,7 @@
 				F462DE612A8FA56C00411B26 /* Core */,
 				CA94599B2A98880400D4BC19 /* Data */,
 				CA028CCD2A9D7AA100A0D880 /* VC */,
-				CA09D8432AA1CF2500C18F24 /* VM */,
+				CAAD2AA22AAAFCDD00510A66 /* VM */,
 			);
 			path = Src;
 			sourceTree = "<group>";
@@ -282,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				F462DE312A8F9DDA00411B26 /* Main.storyboard */,
-				F462DE5F2A8FA2B300411B26 /* AddViewController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -429,7 +431,6 @@
 				F462DE352A8F9DDB00411B26 /* Assets.xcassets in Resources */,
 				CA5691C82AA969FF004A6527 /* alert.wav in Resources */,
 				CA02FC002AA4B8BA00CE1BC4 /* GoogleService-Info.plist in Resources */,
-				F462DE602A8FA2B300411B26 /* AddViewController.xib in Resources */,
 				F462DE332A8F9DDA00411B26 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,12 +458,14 @@
 			files = (
 				CA028CD02A9D7BD400A0D880 /* AlarmItemCell.swift in Sources */,
 				CA028CD42A9DE43600A0D880 /* Constants.swift in Sources */,
-				CA09D8472AA1CF9D00C18F24 /* AddVM.swift in Sources */,
 				F462DE302A8F9DDA00411B26 /* ViewController.swift in Sources */,
 				F462DE2C2A8F9DDA00411B26 /* AppDelegate.swift in Sources */,
+				CAAD2AA42AAAFD0200510A66 /* AddVM.swift in Sources */,
+				CAAD2AA82AAB4E7200510A66 /* UITextField+Extension.swift in Sources */,
 				CA94599D2A98881F00D4BC19 /* SaveDataManager.swift in Sources */,
 				F462DE5C2A8F9FF100411B26 /* AddViewController.swift in Sources */,
 				CA5701612A97882000E3F4B5 /* PopupVC.swift in Sources */,
+				CAAD2AA62AAB496100510A66 /* UIButton+Extension.swift in Sources */,
 				F462DE2E2A8F9DDA00411B26 /* SceneDelegate.swift in Sources */,
 				CA94599F2A98946900D4BC19 /* UserDefaultManager.swift in Sources */,
 				F462DE632A8FA57A00411B26 /* BaseVC.swift in Sources */,

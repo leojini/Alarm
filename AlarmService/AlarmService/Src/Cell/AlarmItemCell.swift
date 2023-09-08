@@ -54,6 +54,9 @@ class AlarmItemCell: UITableViewCell {
             make.top.equalToSuperview().inset(13)
             make.bottom.equalToSuperview().inset(10)
         }
+        timeDesc.snp.makeConstraints { make in
+            make.width.equalTo(120)
+        }
         option.snp.makeConstraints { make in
             make.width.height.equalTo(30)
             make.top.equalToSuperview()
@@ -64,8 +67,8 @@ class AlarmItemCell: UITableViewCell {
         desc.text = data.desc
         timeDesc.text = data.dateStr
         option.image = UIImage(named: (data.option) ? "select": "unSelect")
-        if index % 2 == 0 {
-            contentView.backgroundColor = .purple
+        if data.expired {
+            contentView.backgroundColor = .red
         } else {
             contentView.backgroundColor = .orange
         }
