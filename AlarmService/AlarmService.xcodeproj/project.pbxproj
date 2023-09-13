@@ -36,9 +36,7 @@
 		F462DE2C2A8F9DDA00411B26 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE2B2A8F9DDA00411B26 /* AppDelegate.swift */; };
 		F462DE2E2A8F9DDA00411B26 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE2D2A8F9DDA00411B26 /* SceneDelegate.swift */; };
 		F462DE302A8F9DDA00411B26 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE2F2A8F9DDA00411B26 /* ViewController.swift */; };
-		F462DE332A8F9DDA00411B26 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F462DE312A8F9DDA00411B26 /* Main.storyboard */; };
 		F462DE352A8F9DDB00411B26 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F462DE342A8F9DDB00411B26 /* Assets.xcassets */; };
-		F462DE382A8F9DDB00411B26 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F462DE362A8F9DDB00411B26 /* LaunchScreen.storyboard */; };
 		F462DE432A8F9DDB00411B26 /* AlarmServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE422A8F9DDB00411B26 /* AlarmServiceTests.swift */; };
 		F462DE4D2A8F9DDB00411B26 /* AlarmServiceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE4C2A8F9DDB00411B26 /* AlarmServiceUITests.swift */; };
 		F462DE4F2A8F9DDB00411B26 /* AlarmServiceUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F462DE4E2A8F9DDB00411B26 /* AlarmServiceUITestsLaunchTests.swift */; };
@@ -95,9 +93,7 @@
 		F462DE2B2A8F9DDA00411B26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F462DE2D2A8F9DDA00411B26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F462DE2F2A8F9DDA00411B26 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F462DE322A8F9DDA00411B26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F462DE342A8F9DDB00411B26 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F462DE372A8F9DDB00411B26 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F462DE392A8F9DDB00411B26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F462DE3E2A8F9DDB00411B26 /* AlarmServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AlarmServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F462DE422A8F9DDB00411B26 /* AlarmServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmServiceTests.swift; sourceTree = "<group>"; };
@@ -243,10 +239,8 @@
 				F462DE2B2A8F9DDA00411B26 /* AppDelegate.swift */,
 				F462DE2D2A8F9DDA00411B26 /* SceneDelegate.swift */,
 				F462DE5D2A8FA27500411B26 /* Src */,
-				F462DE5E2A8FA28200411B26 /* UI */,
 				CA5691C52AA969C9004A6527 /* Resource */,
 				F462DE342A8F9DDB00411B26 /* Assets.xcassets */,
-				F462DE362A8F9DDB00411B26 /* LaunchScreen.storyboard */,
 				F462DE392A8F9DDB00411B26 /* Info.plist */,
 			);
 			path = AlarmService;
@@ -279,14 +273,6 @@
 				CAAD2AA22AAAFCDD00510A66 /* VM */,
 			);
 			path = Src;
-			sourceTree = "<group>";
-		};
-		F462DE5E2A8FA28200411B26 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				F462DE312A8F9DDA00411B26 /* Main.storyboard */,
-			);
-			path = UI;
 			sourceTree = "<group>";
 		};
 		F462DE612A8FA56C00411B26 /* Core */ = {
@@ -427,11 +413,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F462DE382A8F9DDB00411B26 /* LaunchScreen.storyboard in Resources */,
 				F462DE352A8F9DDB00411B26 /* Assets.xcassets in Resources */,
 				CA5691C82AA969FF004A6527 /* alert.wav in Resources */,
 				CA02FC002AA4B8BA00CE1BC4 /* GoogleService-Info.plist in Resources */,
-				F462DE332A8F9DDA00411B26 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,25 +490,6 @@
 			targetProxy = F462DE492A8F9DDB00411B26 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		F462DE312A8F9DDA00411B26 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F462DE322A8F9DDA00411B26 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		F462DE362A8F9DDB00411B26 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				F462DE372A8F9DDB00411B26 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F462DE502A8F9DDB00411B26 /* Debug */ = {
@@ -655,8 +620,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AlarmService/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -687,8 +651,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AlarmService/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
