@@ -22,6 +22,7 @@
 		CA5691C82AA969FF004A6527 /* alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = CA5691C72AA969FF004A6527 /* alert.wav */; };
 		CA5701612A97882000E3F4B5 /* PopupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5701602A97882000E3F4B5 /* PopupVC.swift */; };
 		CA5701652A97895E00E3F4B5 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5701642A97895E00E3F4B5 /* UIApplication+Extension.swift */; };
+		CA6246392AB16CBF00D71E13 /* UIShadowButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6246382AB16CBF00D71E13 /* UIShadowButtonView.swift */; };
 		CA94599D2A98881F00D4BC19 /* SaveDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94599C2A98881F00D4BC19 /* SaveDataManager.swift */; };
 		CA94599F2A98946900D4BC19 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA94599E2A98946900D4BC19 /* UserDefaultManager.swift */; };
 		CAAD2AA42AAAFD0200510A66 /* AddVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD2AA32AAAFD0200510A66 /* AddVM.swift */; };
@@ -84,6 +85,7 @@
 		CA5691C72AA969FF004A6527 /* alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = alert.wav; sourceTree = "<group>"; };
 		CA5701602A97882000E3F4B5 /* PopupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupVC.swift; sourceTree = "<group>"; };
 		CA5701642A97895E00E3F4B5 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		CA6246382AB16CBF00D71E13 /* UIShadowButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIShadowButtonView.swift; sourceTree = "<group>"; };
 		CA94599C2A98881F00D4BC19 /* SaveDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveDataManager.swift; sourceTree = "<group>"; };
 		CA94599E2A98946900D4BC19 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		CAAD2AA32AAAFD0200510A66 /* AddVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVM.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				F462DE622A8FA57A00411B26 /* BaseVC.swift */,
 				CA5701602A97882000E3F4B5 /* PopupVC.swift */,
 				CA028CD32A9DE43600A0D880 /* Constants.swift */,
+				CA6246382AB16CBF00D71E13 /* UIShadowButtonView.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				CA94599D2A98881F00D4BC19 /* SaveDataManager.swift in Sources */,
 				F462DE5C2A8F9FF100411B26 /* AddViewController.swift in Sources */,
 				CA5701612A97882000E3F4B5 /* PopupVC.swift in Sources */,
+				CA6246392AB16CBF00D71E13 /* UIShadowButtonView.swift in Sources */,
 				CAAD2AA62AAB496100510A66 /* UIButton+Extension.swift in Sources */,
 				F462DE2E2A8F9DDA00411B26 /* SceneDelegate.swift in Sources */,
 				CA94599F2A98946900D4BC19 /* UserDefaultManager.swift in Sources */,

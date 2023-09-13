@@ -54,18 +54,18 @@ class AddViewController: BaseVC<AddInitData> {
         return tf
     }()
     
-    private let addButton: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("Add", for: .normal)
-        btn.update(type: .normal)
-        return btn
+    private let addButtonView: UIShadowButtonView = {
+        let view = UIShadowButtonView()
+        view.button.setTitle("Add", for: .normal)
+        view.button.update(type: .normal)
+        return view
     }()
     
-    private let closeButton: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("Close", for: .normal)
-        btn.update(type: .normal)
-        return btn
+    private let closeButtonView: UIShadowButtonView = {
+        let view = UIShadowButtonView()
+        view.button.setTitle("Close", for: .normal)
+        view.button.update(type: .normal)
+        return view
     }()
     
     required init<T>(initDataProvider: T) where AddInitData == T.CustomInitData, T : BaseVCInitDataProviderType {
@@ -91,9 +91,9 @@ class AddViewController: BaseVC<AddInitData> {
                 }
                 self.textField.text = data.desc
             }
-            addButton.setTitle("Update", for: .normal)
+            addButtonView.button.setTitle("Update", for: .normal)
         } else {
-            addButton.setTitle("Add", for: .normal)
+            addButtonView.button.setTitle("Add", for: .normal)
         }
         self.requestNotificationAuthorization()
         
@@ -107,8 +107,8 @@ class AddViewController: BaseVC<AddInitData> {
         sv.addSubview(datePicker)
         sv.addSubview(descLabel)
         sv.addSubview(textField)
-        sv.addSubview(addButton)
-        sv.addSubview(closeButton)
+        sv.addSubview(addButtonView)
+        sv.addSubview(closeButtonView)
         
         sv.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
@@ -129,21 +129,21 @@ class AddViewController: BaseVC<AddInitData> {
             make.top.equalTo(descLabel.snp.bottom).offset(10)
             make.height.equalTo(30)
         }
-        addButton.snp.makeConstraints { make in
+        addButtonView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.top.equalTo(textField.snp.bottom).offset(20)
             make.height.equalTo(40)
         }
-        closeButton.snp.makeConstraints { make in
+        closeButtonView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(addButton.snp.bottom).offset(20)
+            make.top.equalTo(addButtonView.snp.bottom).offset(20)
             make.height.equalTo(40)
             make.bottom.equalToSuperview().inset(40)
         }
     }
     
     private func action() {
-        addButton.rx.tap.bind { [weak self] in
+        addButtonView.button.rx.tap.bind { [weak self] in
             guard let self = self else {
                 return
             }
@@ -166,7 +166,7 @@ class AddViewController: BaseVC<AddInitData> {
             }
         }.disposed(by: disposeBag)
         
-        closeButton.rx.tap.bind { [weak self] in
+        closeButtonView.button.rx.tap.bind { [weak self] in
             guard let self = self else {
                 return
             }

@@ -13,6 +13,7 @@ class ViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
     private var datas: [SaveData] = []
+    var indexPath: IndexPath?
     
     private let titleLabel: UILabel = {
         let lb = UILabel()
@@ -27,28 +28,32 @@ class ViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.showsHorizontalScrollIndicator = false
         tableView.bouncesZoom = false
+        tableView.alwaysBounceVertical = false
+        tableView.alwaysBounceHorizontal = false
+        tableView.showsVerticalScrollIndicator = false
+        tableView.bounces = false
         return tableView
     }()
     
-    private let addButton: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("Add", for: .normal)
-        btn.update(type: .normal)
-        return btn
+    private let addButtonView: UIShadowButtonView = {
+        let view = UIShadowButtonView()
+        view.button.setTitle("Add", for: .normal)
+        view.button.update(type: .normal)
+        return view
     }()
     
-    private let editButton: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("Edit", for: .normal)
-        btn.update(type: .normal)
-        return btn
+    private let editButtonView: UIShadowButtonView = {
+        let view = UIShadowButtonView()
+        view.button.setTitle("Edit", for: .normal)
+        view.button.update(type: .normal)
+        return view
     }()
     
-    private let deleteButton: UIButton = {
-        let btn = UIButton()
-        btn.setTitle("Delete", for: .normal)
-        btn.update(type: .normal)
-        return btn
+    private let deleteButtonView: UIShadowButtonView = {
+        let view = UIShadowButtonView()
+        view.button.setTitle("Delete", for: .normal)
+        view.button.update(type: .normal)
+        return view
     }()
     
     deinit {
@@ -73,11 +78,11 @@ class ViewController: UIViewController {
         view.addSubview(titleLabel)
         view.addSubview(tableView)
         
-        let sv = UIStackView(arrangedSubviews: [addButton, editButton, deleteButton])
+        let sv = UIStackView(arrangedSubviews: [addButtonView, editButtonView, deleteButtonView])
         sv.axis = .horizontal
         sv.spacing = 10.0
         sv.alignment = .leading
-        sv.distribution = .fill
+        sv.distribution = .fillEqually
         view.addSubview(sv)
         
         titleLabel.snp.makeConstraints { make in
@@ -88,6 +93,11 @@ class ViewController: UIViewController {
             make.left.right.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-40)
         }
+        for btn in [addButtonView, editButtonView, deleteButtonView] {
+            btn.snp.makeConstraints { make in
+                make.height.equalTo(40)
+            }
+        }
         tableView.snp.makeConstraints { make in
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.top.equalTo(titleLabel.snp.bottom).offset(14)
@@ -96,10 +106,15 @@ class ViewController: UIViewController {
     }
     
     private func action() {
-        addButton.rx.tap.bind { [weak self] in
+        addButtonView.button.rx.tap.bind { [weak self] in
             guard let self = self else {
                 return
             }
+            if self.addButtonView.button.isSelected {
+                PopupVC.showAlert(vc: self, title: "알림", message: "먼저 아이템을 선택하세요")
+                return
+            }
+            
             let customInitData = AddInitData(editMode: false, data: nil)
             let dataProvider = BaseVCInitDataProvider(customInitData: customInitData)
             let vc = AddViewController(initDataProvider: dataProvider)
@@ -107,10 +122,15 @@ class ViewController: UIViewController {
             self.present(vc, animated: true)
         }.disposed(by: disposeBag)
         
-        editButton.rx.tap.bind { [weak self] in
+        editButtonView.button.rx.tap.bind { [weak self] in
             guard let self = self else {
                 return
             }
+            if self.editButtonView.button.isSelected {
+                PopupVC.showAlert(vc: self, title: "알림", message: "먼저 아이템을 선택하세요")
+                return
+            }
+            
             let customInitData = AddInitData(editMode: true, data: SaveDataManager.shared.getSelectedData())
             let dataProvider = BaseVCInitDataProvider(customInitData: customInitData)
             let vc = AddViewController(initDataProvider: dataProvider)
@@ -118,7 +138,7 @@ class ViewController: UIViewController {
             self.present(vc, animated: true)
         }.disposed(by: disposeBag)
         
-        deleteButton.rx.tap.bind { [weak self] in
+        deleteButtonView.button.rx.tap.bind { [weak self] in
             guard let self = self else {
                 return
             }
@@ -144,11 +164,11 @@ class ViewController: UIViewController {
         
         // Edit, Delete 버튼 활성화 체크
         if datas.first(where: { $0.option == true }) != nil {
-            editButton.isEnabled = true
-            deleteButton.isEnabled = true
+            editButtonView.button.isSelected = false
+            deleteButtonView.button.isSelected = false
         } else {
-            editButton.isEnabled = false
-            deleteButton.isEnabled = false
+            editButtonView.button.isSelected = true
+            deleteButtonView.button.isSelected = true
         }
     }
 }
@@ -163,9 +183,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = datas[indexPath.row]
+        let index = indexPath.row
+        let data = datas[index]
         if let cell: AlarmItemCell = tableView.dequeueReusableCell(withIdentifier: "AlarmItemCell") as? AlarmItemCell {
-            cell.setData(data: data, index: indexPath.row)
+            var type: AlarmItemType = .none
+            if index == 0, index == datas.count - 1 {
+                type = .topBottom
+            } else if index == 0 {
+                type = .top
+            } else if index == datas.count - 1 {
+                type = .bottom
+            }
+            cell.setData(data: data, index: indexPath.row, type: type)
             return cell
         }
         return UITableViewCell()

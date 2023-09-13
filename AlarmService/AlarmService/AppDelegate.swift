@@ -14,8 +14,6 @@ import FirebaseMessaging
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         SaveDataManager.shared.start()
@@ -76,6 +74,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         print("id aaa : \(response.notification.request.identifier)")
         completionHandler()
+        NotificationCenter.default.post(name: Constants.RefreshAlarms, object: nil, userInfo: nil)
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -83,6 +82,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("id bbb : \(notification.request.identifier)")
         completionHandler([.alert, .badge, .sound])
+        NotificationCenter.default.post(name: Constants.RefreshAlarms, object: nil, userInfo: nil)
     }
 }
 

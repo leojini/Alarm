@@ -7,6 +7,13 @@
 
 import UIKit
 
+enum AlarmItemType {
+    case none
+    case top
+    case bottom
+    case topBottom
+}
+
 class AlarmItemCell: UITableViewCell {
     
     private let option: UIImageView = {
@@ -63,7 +70,7 @@ class AlarmItemCell: UITableViewCell {
         }
     }
     
-    func setData(data: SaveData, index: Int) {
+    func setData(data: SaveData, index: Int, type: AlarmItemType = .none) {
         desc.text = data.desc
         timeDesc.text = data.dateStr
         option.image = UIImage(named: (data.option) ? "select": "unSelect")
@@ -71,6 +78,21 @@ class AlarmItemCell: UITableViewCell {
             contentView.backgroundColor = .red
         } else {
             contentView.backgroundColor = .orange
+        }
+        
+        switch type {
+        case .none:
+            contentView.layer.cornerRadius = 0
+            contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        case .top:
+            contentView.layer.cornerRadius = 14
+            contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        case .bottom:
+            contentView.layer.cornerRadius = 14
+            contentView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+        case .topBottom:
+            contentView.layer.cornerRadius = 14
+            contentView.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner, .layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         }
     }
 }
