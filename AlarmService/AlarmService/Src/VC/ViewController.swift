@@ -32,6 +32,7 @@ class ViewController: UIViewController {
         tableView.alwaysBounceHorizontal = false
         tableView.showsVerticalScrollIndicator = false
         tableView.bounces = false
+        tableView.register(AlarmItemCell.self, forCellReuseIdentifier: "AlarmItemCell")
         return tableView
     }()
     
@@ -65,8 +66,6 @@ class ViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(AlarmItemCell.self, forCellReuseIdentifier: "AlarmItemCell")
-        
         setupViews()
         action()
         refresh()
