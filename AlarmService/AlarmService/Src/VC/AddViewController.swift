@@ -25,6 +25,15 @@ class AddViewController: BaseVC<AddInitData> {
         return sv
     }()
     
+    private let stackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [])
+        sv.axis = .vertical
+        sv.spacing = 20
+        sv.alignment = .leading
+        sv.distribution = .fill
+        return sv
+    }()
+    
     private let datePicker: UIDatePicker = {
         let dp = UIDatePicker()
         dp.preferredDatePickerStyle = .inline
@@ -52,6 +61,11 @@ class AddViewController: BaseVC<AddInitData> {
         tf.addLeftPadding()
         tf.addRightPadding()
         return tf
+    }()
+    
+    private let repeatPeriodView: RepeatPeriodView = {
+        let v = RepeatPeriodView()
+        return v
     }()
     
     private let addButtonView: UIShadowButtonView = {
@@ -104,41 +118,42 @@ class AddViewController: BaseVC<AddInitData> {
     private func setupViews() {
         view.backgroundColor = .white
         view.addSubview(sv)
-        sv.addSubview(datePicker)
-        sv.addSubview(descLabel)
-        sv.addSubview(textField)
-        sv.addSubview(addButtonView)
-        sv.addSubview(closeButtonView)
+        sv.addSubview(stackView)
+        
+        stackView.addArrangedSubview(datePicker)
+        stackView.addArrangedSubview(descLabel)
+        stackView.addArrangedSubview(textField)
+        stackView.addArrangedSubview(repeatPeriodView)
+        stackView.addArrangedSubview(addButtonView)
+        stackView.addArrangedSubview(closeButtonView)
         
         sv.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
+            make.left.right.top.bottom.equalTo(view.safeAreaLayoutGuide)
             make.width.equalToSuperview()
         }
-        datePicker.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
-            make.width.equalTo(view.snp.width).offset(-40)
-            make.top.equalToSuperview().inset(10)
+            make.width.equalTo(self.view.snp.width).offset(-40)
+        }
+        datePicker.snp.makeConstraints { make in
+            make.width.equalToSuperview()
             make.height.equalTo(380)
         }
-        descLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(datePicker.snp.bottom).offset(20)
-        }
         textField.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(descLabel.snp.bottom).offset(10)
+            make.width.equalToSuperview()
             make.height.equalTo(30)
         }
+        repeatPeriodView.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+            make.height.equalTo(50)
+        }
         addButtonView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(textField.snp.bottom).offset(20)
+            make.width.equalToSuperview()
             make.height.equalTo(40)
         }
         closeButtonView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(addButtonView.snp.bottom).offset(20)
+            make.width.equalToSuperview()
             make.height.equalTo(40)
-            make.bottom.equalToSuperview().inset(40)
         }
     }
     

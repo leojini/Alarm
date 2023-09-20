@@ -38,10 +38,6 @@ class SaveDataManager {
     
     private init() {}
     
-    func start() {
-        
-    }
-    
     func save(id: String, date: Date, desc: String, option: Bool = false) {
         let formatter = DateFormatter()
         formatter.dateFormat = Constants.DateFormat
@@ -89,15 +85,14 @@ class SaveDataManager {
         return []
     }
     
-    func update(datas: [SaveData]) {
-        UserDefaultsManager.saveDatas = datas
-    }
-    
-    func update(id: String, data: SaveData) {
-        if var saveArray = UserDefaultsManager.saveDatas, let index = saveArray.firstIndex(where: { obj in obj.id == id }) {
-            saveArray.remove(at: index)
-            saveArray.insert(data, at: index)
-            UserDefaultsManager.saveDatas = saveArray
+    func update(selectId: String) {
+        if let saveArray = UserDefaultsManager.saveDatas {
+            var tempArray: [SaveData] = []
+            for var data in saveArray {
+                data.option = data.id == selectId
+                tempArray.append(data)
+            }
+            UserDefaultsManager.saveDatas = tempArray
         }
     }
     

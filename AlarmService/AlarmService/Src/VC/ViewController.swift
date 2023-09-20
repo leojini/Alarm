@@ -57,6 +57,13 @@ class ViewController: UIViewController {
         return view
     }()
     
+    private let settingButtonView: UIShadowButtonView = {
+        let view = UIShadowButtonView()
+        view.button.setTitle("Setting", for: .normal)
+        view.button.update(type: .normal)
+        return view
+    }()
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: Constants.RefreshAlarms, object: nil)
     }
@@ -155,6 +162,13 @@ class ViewController: UIViewController {
                 PopupVC.showAlert(vc: self, title: "알림", message: "아이템을 먼저 선택해주세요.")
             }
         }.disposed(by: disposeBag)
+        
+        settingButtonView.button.rx.tap.bind { [weak self] in
+            guard let self = self else {
+                return
+            }
+            
+        }
     }
     
     @objc func refresh() {
@@ -202,12 +216,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = datas[indexPath.row]
         if data.option == false {
-            var tempDatas: [SaveData] = []
-            for var d in datas {
-                d.option = (data.id == d.id)
-                tempDatas.append(d)
-            }
-            SaveDataManager.shared.update(datas: tempDatas)
+            SaveDataManager.shared.update(selectId: data.id)
             refresh()
         }
     }
