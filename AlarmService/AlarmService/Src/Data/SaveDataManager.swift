@@ -15,8 +15,10 @@ struct SaveData: Codable {
     let id: String
     let desc: String
     let dateStr: String
-    var option: Bool = false
-    
+    var selected: Bool = false // 선택된 경우
+    var repeatPeriod: Int = 0  // 0이면 반복 안함. 0이상이면 반복 주기(분)
+    var repeatCount: Int = 0   // 0이면 반복 안함. 0이상이면 반복 횟수
+
     var date: Date? {
         let formatter = DateFormatter()
         formatter.dateFormat = Constants.DateFormat
@@ -38,12 +40,14 @@ class SaveDataManager {
     
     private init() {}
     
-    func save(id: String, date: Date, desc: String, option: Bool = false) {
+    func save(id: String, date: Date, desc: String, selected: Bool = false, repeatPeriod: Int = 0, repeatCount: Int = 0) {
         let formatter = DateFormatter()
         formatter.dateFormat = Constants.DateFormat
         let dateStr = formatter.string(from: date)
         
-        let data = SaveData(id: id, desc: desc, dateStr: dateStr, option: option)
+        var data = SaveData(id: id, desc: desc, dateStr: dateStr, selected: selected)
+        data.repeatPeriod = repeatPeriod
+        data.repeatCount = repeatCount
         if var saveArray = UserDefaultsManager.saveDatas {
             saveArray.append(data)
             UserDefaultsManager.saveDatas = saveArray
@@ -89,7 +93,7 @@ class SaveDataManager {
         if let saveArray = UserDefaultsManager.saveDatas {
             var tempArray: [SaveData] = []
             for var data in saveArray {
-                data.option = data.id == selectId
+                data.selected = data.id == selectId
                 tempArray.append(data)
             }
             UserDefaultsManager.saveDatas = tempArray
@@ -97,7 +101,7 @@ class SaveDataManager {
     }
     
     func getSelectedData() -> SaveData? {
-        if let saveArray = UserDefaultsManager.saveDatas, let item = saveArray.first(where: { $0.option == true }) {
+        if let saveArray = UserDefaultsManager.saveDatas, let item = saveArray.first(where: { $0.selected == true }) {
             return item
         }
         return nil

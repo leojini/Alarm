@@ -31,6 +31,9 @@
 		CAAD2AA42AAAFD0200510A66 /* AddVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD2AA32AAAFD0200510A66 /* AddVM.swift */; };
 		CAAD2AA62AAB496100510A66 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD2AA52AAB496000510A66 /* UIButton+Extension.swift */; };
 		CAAD2AA82AAB4E7200510A66 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAD2AA72AAB4E7200510A66 /* UITextField+Extension.swift */; };
+		CAC9CDAA2AC10F4D00BAF787 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC9CDA92AC10F4D00BAF787 /* UIColor+Extension.swift */; };
+		CAD769FA2ABAB2CC0045D861 /* RadioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD769F92ABAB2CC0045D861 /* RadioButtonView.swift */; };
+		CAD769FC2ABAB39F0045D861 /* AlPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD769FB2ABAB39F0045D861 /* AlPickerView.swift */; };
 		F41B36522A932CC800D151E8 /* RxBlocking in Frameworks */ = {isa = PBXBuildFile; productRef = F41B36512A932CC800D151E8 /* RxBlocking */; };
 		F41B36542A932CC800D151E8 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = F41B36532A932CC800D151E8 /* RxCocoa */; };
 		F41B36562A932CC800D151E8 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = F41B36552A932CC800D151E8 /* RxRelay */; };
@@ -97,6 +100,9 @@
 		CAAD2AA32AAAFD0200510A66 /* AddVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddVM.swift; sourceTree = "<group>"; };
 		CAAD2AA52AAB496000510A66 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		CAAD2AA72AAB4E7200510A66 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		CAC9CDA92AC10F4D00BAF787 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CAD769F92ABAB2CC0045D861 /* RadioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButtonView.swift; sourceTree = "<group>"; };
+		CAD769FB2ABAB39F0045D861 /* AlPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlPickerView.swift; sourceTree = "<group>"; };
 		F462DE282A8F9DDA00411B26 /* AlarmService.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlarmService.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F462DE2B2A8F9DDA00411B26 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F462DE2D2A8F9DDA00411B26 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +197,7 @@
 				CA5701642A97895E00E3F4B5 /* UIApplication+Extension.swift */,
 				CAAD2AA52AAB496000510A66 /* UIButton+Extension.swift */,
 				CAAD2AA72AAB4E7200510A66 /* UITextField+Extension.swift */,
+				CAC9CDA92AC10F4D00BAF787 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -199,6 +206,8 @@
 			isa = PBXGroup;
 			children = (
 				CA6F31D72AB970F300AF8131 /* RepeatPeriodView.swift */,
+				CAD769F92ABAB2CC0045D861 /* RadioButtonView.swift */,
+				CAD769FB2ABAB39F0045D861 /* AlPickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -469,12 +478,15 @@
 				CA6F31D32AB9685300AF8131 /* SettingViewController.swift in Sources */,
 				CAAD2AA82AAB4E7200510A66 /* UITextField+Extension.swift in Sources */,
 				CA94599D2A98881F00D4BC19 /* SaveDataManager.swift in Sources */,
+				CAD769FC2ABAB39F0045D861 /* AlPickerView.swift in Sources */,
+				CAD769FA2ABAB2CC0045D861 /* RadioButtonView.swift in Sources */,
 				F462DE5C2A8F9FF100411B26 /* AddViewController.swift in Sources */,
 				CA5701612A97882000E3F4B5 /* PopupVC.swift in Sources */,
 				CA6246392AB16CBF00D71E13 /* UIShadowButtonView.swift in Sources */,
 				CA6F31D82AB970F300AF8131 /* RepeatPeriodView.swift in Sources */,
 				CAAD2AA62AAB496100510A66 /* UIButton+Extension.swift in Sources */,
 				F462DE2E2A8F9DDA00411B26 /* SceneDelegate.swift in Sources */,
+				CAC9CDAA2AC10F4D00BAF787 /* UIColor+Extension.swift in Sources */,
 				CA94599F2A98946900D4BC19 /* UserDefaultManager.swift in Sources */,
 				F462DE632A8FA57A00411B26 /* BaseVC.swift in Sources */,
 				CA09D8492AA1D36800C18F24 /* NibLoadable.swift in Sources */,

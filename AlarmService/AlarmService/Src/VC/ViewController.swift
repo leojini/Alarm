@@ -148,7 +148,7 @@ class ViewController: UIViewController {
             guard let self = self else {
                 return
             }
-            if let data = datas.first(where: { $0.option == true }) {
+            if let data = datas.first(where: { $0.selected == true }) {
                 PopupVC.showAlert(vc: self, title: "알림", message: "'\(data.desc)' 스케줄에서 삭제하시겠습니까?", okHandler: {
                     if SaveDataManager.shared.delete(id: data.id) {
                         PopupVC.showAlert(vc: self, title: "알림", message: "'\(data.desc)' 스케줄에서 삭제했습니다.") {
@@ -163,12 +163,9 @@ class ViewController: UIViewController {
             }
         }.disposed(by: disposeBag)
         
-        settingButtonView.button.rx.tap.bind { [weak self] in
-            guard let self = self else {
-                return
-            }
+        settingButtonView.button.rx.tap.bind { _ in
             
-        }
+        }.disposed(by: disposeBag)
     }
     
     @objc func refresh() {
@@ -176,7 +173,7 @@ class ViewController: UIViewController {
         tableView.reloadData()
         
         // Edit, Delete 버튼 활성화 체크
-        if datas.first(where: { $0.option == true }) != nil {
+        if datas.first(where: { $0.selected == true }) != nil {
             editButtonView.button.isSelected = false
             deleteButtonView.button.isSelected = false
         } else {
@@ -215,7 +212,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let data = datas[indexPath.row]
-        if data.option == false {
+        if data.selected == false {
             SaveDataManager.shared.update(selectId: data.id)
             refresh()
         }

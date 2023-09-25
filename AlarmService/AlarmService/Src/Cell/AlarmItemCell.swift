@@ -73,7 +73,7 @@ class AlarmItemCell: UITableViewCell {
     func setData(data: SaveData, index: Int, type: AlarmItemType = .none) {
         desc.text = data.desc
         timeDesc.text = data.dateStr
-        option.image = UIImage(named: (data.option) ? "select": "unSelect")
+        option.image = UIImage(named: (data.selected) ? "select": "unSelect")
         if data.expired {
             contentView.backgroundColor = .red
         } else {

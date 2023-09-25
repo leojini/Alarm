@@ -63,7 +63,7 @@ class AddViewController: BaseVC<AddInitData> {
         return tf
     }()
     
-    private let repeatPeriodView: RepeatPeriodView = {
+    let repeatPeriodView: RepeatPeriodView = {
         let v = RepeatPeriodView()
         return v
     }()
@@ -104,6 +104,19 @@ class AddViewController: BaseVC<AddInitData> {
                     self.datePicker.date = date
                 }
                 self.textField.text = data.desc
+                
+                if data.repeatPeriod > 0, data.repeatCount > 0 {
+                    repeatPeriodView.updatePeriodButton(enableRepeat: true)
+                    if let item = RepeatPeriodView.peroids.first(where: { $0.number == data.repeatPeriod }) {
+                        repeatPeriodView.updatePeriodData(data: item)
+                    }
+                    
+                    if let item = RepeatPeriodView.counts.first(where: { $0.number == data.repeatCount }) {
+                        repeatPeriodView.updateCountData(data: item)
+                    }
+                } else {
+                    repeatPeriodView.updatePeriodButton(enableRepeat: false)
+                }
             }
             addButtonView.button.setTitle("Update", for: .normal)
         } else {
@@ -145,7 +158,6 @@ class AddViewController: BaseVC<AddInitData> {
         }
         repeatPeriodView.snp.makeConstraints { make in
             make.width.equalToSuperview()
-            make.height.equalTo(50)
         }
         addButtonView.snp.makeConstraints { make in
             make.width.equalToSuperview()
@@ -158,6 +170,8 @@ class AddViewController: BaseVC<AddInitData> {
     }
     
     private func action() {
+        repeatPeriodView.delegate = self
+        
         addButtonView.button.rx.tap.bind { [weak self] in
             guard let self = self else {
                 return

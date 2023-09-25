@@ -46,7 +46,14 @@ extension AddViewController {
             } else {
                 PopupVC.showAlert(vc: self, title: "알림", message: "'\(desc)'를 스케줄에 추가했습니다.\n\(message)")
             }
-            SaveDataManager.shared.save(id: request.identifier, date: date, desc: desc, option: self.viewModel.editMode)
+            
+            if self.repeatPeriodView.isRepeat() {
+                self.repeatPeriodView.getRepeatData { period, count in
+                    SaveDataManager.shared.save(id: request.identifier, date: date, desc: desc, selected: self.viewModel.editMode, repeatPeriod: period, repeatCount: count)
+                }
+            } else {
+                SaveDataManager.shared.save(id: request.identifier, date: date, desc: desc, selected: self.viewModel.editMode)
+            }
         }
     }
     
@@ -69,5 +76,15 @@ extension AddViewController {
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComp, repeats: false)
         
         return UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+    }
+}
+
+extension AddViewController: RepeatPeriodViewDelegate {
+    func selectPeriod(data: AlPickerData) {
+        print("period's name : \(data.name)")
+    }
+    
+    func selectCount(data: AlPickerData) {
+        print("count's name : \(data.name)")
     }
 }
